@@ -32,7 +32,6 @@ class VisitorDetails extends VisitorDetailsAbstract
     public function renderVisitorDetails($visitorDetails)
     {
         $view            = new View('@Referrers/_visitorDetails.twig');
-        $view->sendHeadersWhenRendering = false;
         $view->visitInfo = $visitorDetails;
         return [[ 10, $view->render() ]];
     }

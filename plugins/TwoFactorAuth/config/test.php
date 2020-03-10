@@ -6,7 +6,7 @@ return array(
     'Piwik\Plugins\TwoFactorAuth\TwoFactorAuthentication' => DI\decorate(function ($previous) {
         /** @var Piwik\Plugins\TwoFactorAuth\TwoFactorAuthentication $previous */
 
-        if (!\Piwik\SettingsPiwik::isMatomoInstalled()) {
+        if (!\Piwik\SettingsPiwik::isPiwikInstalled()) {
             return $previous;
         }
 
@@ -30,7 +30,7 @@ return array(
     'Piwik\Plugins\TwoFactorAuth\Dao\RecoveryCodeDao' => DI\decorate(function ($previous) {
         /** @var Piwik\Plugins\TwoFactorAuth\Dao\RecoveryCodeDao $previous */
 
-        if (!\Piwik\SettingsPiwik::isMatomoInstalled()) {
+        if (!\Piwik\SettingsPiwik::isPiwikInstalled()) {
             return $previous;
         }
 
@@ -47,7 +47,7 @@ return array(
     }),
     'Piwik\Plugins\TwoFactorAuth\SystemSettings' => DI\decorate(function ($previous) {
         /** @var Piwik\Plugins\TwoFactorAuth\SystemSettings $previous */
-        if (!\Piwik\SettingsPiwik::isMatomoInstalled()) {
+        if (!\Piwik\SettingsPiwik::isPiwikInstalled()) {
             return $previous;
         }
 

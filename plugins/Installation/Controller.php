@@ -619,7 +619,7 @@ class Controller extends \Piwik\Plugin\ControllerAdmin
 
     private function checkPiwikIsNotInstalled($possibleErrorMessage = null)
     {
-        if (!SettingsPiwik::isMatomoInstalled()) {
+        if (!SettingsPiwik::isPiwikInstalled()) {
             return;
         }
 

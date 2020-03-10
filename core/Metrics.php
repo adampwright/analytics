@@ -9,6 +9,7 @@
 namespace Piwik;
 
 use Piwik\Cache as PiwikCache;
+use Piwik\Columns\MetricsList;
 use Piwik\Container\StaticContainer;
 
 require_once PIWIK_INCLUDE_PATH . "/core/Piwik.php";
@@ -178,7 +179,7 @@ class Metrics
 
     public static function getMappingFromIdToName()
     {
-        $cache = PiwikCache::getTransientCache();
+        $cache = StaticContainer::get(PiwikCache\Transient::class);
         $cacheKey = CacheId::siteAware(CacheId::pluginAware('Metrics.mappingFromIdToName'));
 
         $value = $cache->fetch($cacheKey);

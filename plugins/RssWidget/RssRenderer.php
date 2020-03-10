@@ -8,9 +8,7 @@
  */
 
 namespace Piwik\Plugins\RssWidget;
-
 use Piwik\Cache;
-use Matomo\Cache\Lazy;
 use Piwik\Http;
 
 /**
@@ -23,7 +21,7 @@ class RssRenderer
     protected $showDescription = false;
     protected $showContent = false;
     /**
-     * @var Lazy
+     * @var Cache\Lazy
      */
     private $cache;
 

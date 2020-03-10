@@ -8,9 +8,9 @@
 namespace Piwik\Config;
 
 use Piwik\Common;
-use Matomo\Ini\IniReader;
-use Matomo\Ini\IniReadingException;
-use Matomo\Ini\IniWriter;
+use Piwik\Ini\IniReader;
+use Piwik\Ini\IniReadingException;
+use Piwik\Ini\IniWriter;
 use Piwik\Piwik;
 
 /**

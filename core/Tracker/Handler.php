@@ -9,11 +9,13 @@
 
 namespace Piwik\Tracker;
 
+use Piwik\Common;
 use Piwik\Container\StaticContainer;
 use Piwik\Exception\InvalidRequestParameterException;
 use Piwik\Exception\UnexpectedWebsiteFoundException;
 use Piwik\Tracker;
 use Exception;
+use Piwik\Url;
 use Psr\Log\LoggerInterface;
 
 class Handler
@@ -106,11 +108,13 @@ class Handler
         }
 
         $this->response->outputException($tracker, $e, $statusCode);
+        $this->redirectIfNeeded($requestSet);
     }
 
     public function finish(Tracker $tracker, RequestSet $requestSet)
     {
         $this->response->outputResponse($tracker);
+        $this->redirectIfNeeded($requestSet);
         return $this->response->getOutput();
     }
 
@@ -119,4 +123,12 @@ class Handler
         return $this->response;
     }
 
+    protected function redirectIfNeeded(RequestSet $requestSet)
+    {
+        $redirectUrl = $requestSet->shouldPerformRedirectToUrl();
+
+        if (!empty($redirectUrl)) {
+            Url::redirectToUrl($redirectUrl);
+        }
+    }
 }

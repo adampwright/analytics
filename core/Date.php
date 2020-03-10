@@ -10,6 +10,7 @@
 namespace Piwik;
 
 use Exception;
+use Piwik\Common;
 use Piwik\Container\StaticContainer;
 use Piwik\Intl\Data\Provider\DateTimeFormatProvider;
 
@@ -442,9 +443,9 @@ class Date
      */
     public function isLeapYear()
     {
-        $isLeap = (bool)(date('L', $this->getTimestamp()));
+        $currentYear = date('Y', $this->getTimestamp());
 
-        return $isLeap;
+        return ($currentYear % 400) == 0 || (($currentYear % 4) == 0 && ($currentYear % 100) != 0);
     }
 
     /**

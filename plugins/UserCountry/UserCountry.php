@@ -8,10 +8,18 @@
  */
 namespace Piwik\Plugins\UserCountry;
 
+use Piwik\ArchiveProcessor;
 use Piwik\Config;
 use Piwik\Container\StaticContainer;
 use Piwik\Intl\Data\Provider\RegionDataProvider;
-use Piwik\Plugins\GeoIp2\LocationProvider\GeoIp2;
+use Piwik\Plugins\UserCountry\LocationProvider\GeoIp;
+use Piwik\Plugins\UserCountry\LocationProvider;
+use Piwik\Url;
+
+/**
+ * @see plugins/UserCountry/GeoIPAutoUpdater.php
+ */
+require_once PIWIK_INCLUDE_PATH . '/plugins/UserCountry/GeoIPAutoUpdater.php';
 
 /**
  *
@@ -19,13 +27,14 @@ use Piwik\Plugins\GeoIp2\LocationProvider\GeoIp2;
 class UserCountry extends \Piwik\Plugin
 {
     /**
-     * @see \Piwik\Plugin::registerEvents
+     * @see Piwik\Plugin::registerEvents
      */
     public function registerEvents()
     {
         return array(
             'AssetManager.getStylesheetFiles'        => 'getStylesheetFiles',
             'AssetManager.getJavaScriptFiles'        => 'getJsFiles',
+            'Translate.getClientSideTranslationKeys' => 'getClientSideTranslationKeys',
             'Tracker.setTrackerCacheGeneral'         => 'setTrackerCacheGeneral',
             'Insights.addReportToOverview'           => 'addReportToInsightsOverview',
         );
@@ -50,6 +59,8 @@ class UserCountry extends \Piwik\Plugin
     {
         $jsFiles[] = "plugins/UserCountry/angularjs/location-provider-selection/location-provider-selection.controller.js";
         $jsFiles[] = "plugins/UserCountry/angularjs/location-provider-selection/location-provider-selection.directive.js";
+        $jsFiles[] = "plugins/UserCountry/angularjs/location-provider-updater/location-provider-updater.controller.js";
+        $jsFiles[] = "plugins/UserCountry/angularjs/location-provider-updater/location-provider-updater.directive.js";
     }
 
     /**
@@ -82,9 +93,18 @@ class UserCountry extends \Piwik\Plugin
     public function isGeoIPWorking()
     {
         $provider = LocationProvider::getCurrentProvider();
-        return $provider instanceof GeoIp2
+        return $provider instanceof GeoIp
         && $provider->isAvailable() === true
         && $provider->isWorking() === true;
+    }
+
+    public function getClientSideTranslationKeys(&$translationKeys)
+    {
+        $translationKeys[] = "UserCountry_FatalErrorDuringDownload";
+        $translationKeys[] = "UserCountry_SetupAutomaticUpdatesOfGeoIP";
+        $translationKeys[] = "General_Done";
+        $translationKeys[] = "General_Save";
+        $translationKeys[] = "General_Continue";
     }
 
     public static function isGeoLocationAdminEnabled()

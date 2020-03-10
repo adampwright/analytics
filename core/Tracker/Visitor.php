@@ -8,6 +8,8 @@
  */
 namespace Piwik\Tracker;
 
+use Piwik\Config;
+use Piwik\Tracker;
 use Piwik\Tracker\Visit\VisitProperties;
 
 class Visitor

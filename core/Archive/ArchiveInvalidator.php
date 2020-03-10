@@ -15,6 +15,7 @@ use Piwik\CronArchive\SitesToReprocessDistributedList;
 use Piwik\DataAccess\ArchiveTableCreator;
 use Piwik\DataAccess\Model;
 use Piwik\Date;
+use Piwik\CliMulti\Process;
 use Piwik\Db;
 use Piwik\Option;
 use Piwik\Common;

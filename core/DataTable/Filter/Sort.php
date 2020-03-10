@@ -9,8 +9,10 @@
 namespace Piwik\DataTable\Filter;
 
 use Piwik\DataTable\BaseFilter;
+use Piwik\DataTable\Row;
 use Piwik\DataTable\Simple;
 use Piwik\DataTable;
+use Piwik\Metrics;
 use Piwik\Metrics\Sorter;
 
 /**

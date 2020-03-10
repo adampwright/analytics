@@ -8,7 +8,7 @@
  */
 namespace Piwik\Plugins\Marketplace\Plugins;
 
-use Matomo\Cache\Eager;
+use Piwik\Cache;
 use Piwik\Piwik;
 use Piwik\Plugin;
 use Piwik\Plugins\Marketplace\Api\Client;
@@ -37,7 +37,7 @@ class InvalidLicenses
     private $translator;
 
     /**
-     * @var Eager
+     * @var Cache\Eager
      */
     private $cache;
 
@@ -50,7 +50,7 @@ class InvalidLicenses
 
     private $cacheKey = 'Marketplace_ExpiredPlugins';
 
-    public function __construct(Client $client, Eager $cache, Translator $translator, Plugins $plugins)
+    public function __construct(Client $client, Cache\Eager $cache, Translator $translator, Plugins $plugins)
     {
         $this->client = $client;
         $this->translator = $translator;

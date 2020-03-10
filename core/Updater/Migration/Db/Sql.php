@@ -8,6 +8,7 @@
 namespace Piwik\Updater\Migration\Db;
 use Piwik\Common;
 use Piwik\Db;
+use Piwik\Updater\Migration as MigrationInterface;
 use Piwik\Updater\Migration\Db as DbMigration;
 
 /**

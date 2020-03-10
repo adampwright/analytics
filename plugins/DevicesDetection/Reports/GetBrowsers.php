@@ -23,7 +23,6 @@ class GetBrowsers extends Base
         $this->documentation = Piwik::translate('DevicesDetection_WidgetBrowsersDocumentation', '<br />');
         $this->order = 5;
         $this->subcategoryId = 'DevicesDetection_Software';
-        $this->hasGoalMetrics = true;
     }
 
     public function configureView(ViewDataTable $view)

@@ -8,18 +8,12 @@
 namespace Piwik\CliMulti;
 
 use Piwik\Common;
-use Piwik\Config;
 
 class CliPhp
 {
 
     public function findPhpBinary()
     {
-        $general = Config::getInstance()->General;
-        if (!empty($general['php_binary_path']) && file_exists($general['php_binary_path'])) {
-            return $general['php_binary_path'];
-        }
-
         if (defined('PHP_BINARY')) {
             if ($this->isHhvmBinary(PHP_BINARY)) {
                 return PHP_BINARY . ' --php';
@@ -83,12 +77,8 @@ class CliPhp
 
     private function isValidPhpType($path)
     {
-        if (empty($path)) {
-            return false;
-        }
-        $path = basename($path);
-
-        return false === strpos($path, 'fpm')
+        return !empty($path)
+        && false === strpos($path, 'fpm')
         && false === strpos($path, 'cgi')
         && false === strpos($path, 'phpunit')
         && false === strpos($path, 'lsphp');

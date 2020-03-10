@@ -14,7 +14,10 @@ use Piwik\Common;
 use Piwik\Config;
 use Piwik\Piwik;
 use Piwik\Timer;
+use Piwik\Tracker;
 use Piwik\Tracker\Db\DbException;
+use Piwik\Tracker\Db\Mysqli;
+use Piwik\Tracker\Db\Pdo\Mysql;
 
 /**
  * Simple database wrapper.

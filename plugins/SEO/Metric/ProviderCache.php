@@ -9,7 +9,6 @@
 namespace Piwik\Plugins\SEO\Metric;
 
 use Piwik\Cache;
-use Matomo\Cache\Lazy;
 
 /**
  * Caches another provider.
@@ -22,7 +21,7 @@ class ProviderCache implements MetricsProvider
     private $provider;
 
     /**
-     * @var Lazy
+     * @var Cache\Lazy
      */
     private $cache;
 

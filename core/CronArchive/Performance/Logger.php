@@ -11,6 +11,7 @@ namespace Piwik\CronArchive\Performance;
 use Piwik\ArchiveProcessor;
 use Piwik\Common;
 use Piwik\Config;
+use Piwik\Option;
 use Piwik\Timer;
 use Piwik\Url;
 use Psr\Log\LoggerInterface;

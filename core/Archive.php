@@ -163,7 +163,7 @@ class Archive implements ArchiveQuery
     private $params;
 
     /**
-     * @var \Matomo\Cache\Cache
+     * @var \Piwik\Cache\Cache
      */
     private static $cache;
 

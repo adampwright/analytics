@@ -8,6 +8,8 @@
  */
 namespace Piwik\Menu;
 
+use Piwik\Piwik;
+
 /**
  * Contains menu entries for the Top menu (the menu at the very top of the page).
  * Plugins can implement the `configureTopMenu()` method of the `Menu` plugin class to add, rename of remove
@@ -45,7 +47,7 @@ class MenuTop extends MenuAbstract
     /**
      * Triggers the Menu.Top.addItems hook and returns the menu.
      *
-     * @return array
+     * @return Array
      */
     public function getMenu()
     {

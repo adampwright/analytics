@@ -280,7 +280,7 @@ class Goals extends \Piwik\Plugin
         $reports = new ReportsProvider();
 
         foreach ($reports->getAllReports() as $report) {
-            if ($report->hasGoalMetrics() && $report->isEnabled()) {
+            if ($report->hasGoalMetrics()) {
                 $reportsWithGoals[] = array(
                     'category' => $report->getCategoryId(),
                     'name'     => $report->getName(),

@@ -57,13 +57,7 @@ class Sparkline implements ViewInterface
 
     public function main()
     {
-        try {
-            $sparkline = new \Davaxi\Sparkline();
-        } catch (\Exception $exception) {
-            // Ignore GD not installed exception
-            return;
-        }
-
+        $sparkline = new \Davaxi\Sparkline();
 
         $thousandSeparator = Piwik::translate('Intl_NumberSymbolGroup');
         $decimalSeparator = Piwik::translate('Intl_NumberSymbolDecimal');
@@ -211,9 +205,7 @@ class Sparkline implements ViewInterface
     }
 
     public function render() {
-        if ($this->sparkline instanceof \Davaxi\Sparkline) {
-            $this->sparkline->display();
-            $this->sparkline->destroy();
-        }
+        $this->sparkline->display();
+        $this->sparkline->destroy();
     }
 }

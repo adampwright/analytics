@@ -8,7 +8,7 @@
 
 namespace Piwik\Translation\Loader;
 
-use Matomo\Cache\Lazy;
+use Piwik\Cache;
 
 /**
  * Caches the translations loaded by another loader.
@@ -21,11 +21,11 @@ class LoaderCache implements LoaderInterface
     private $loader;
 
     /**
-     * @var Lazy
+     * @var Cache\Lazy
      */
     private $cache;
 
-    public function __construct(LoaderInterface $loader, Lazy $cache)
+    public function __construct(LoaderInterface $loader, Cache\Lazy $cache)
     {
         $this->loader = $loader;
         $this->cache = $cache;

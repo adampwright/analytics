@@ -60,11 +60,6 @@ class BrowserName extends Base
         return \Piwik\Plugins\DevicesDetection\getBrowserName($value);
     }
 
-    public function onAnyGoalConversion(Request $request, Visitor $visitor, $action)
-    {
-        return $visitor->getVisitorColumn($this->columnName);
-    }
-
     /**
      * @param Request $request
      * @param Visitor $visitor

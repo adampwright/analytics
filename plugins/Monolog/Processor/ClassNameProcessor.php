@@ -62,7 +62,11 @@ class ClassNameProcessor
 
     private function getBacktrace()
     {
-        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS | DEBUG_BACKTRACE_PROVIDE_OBJECT);
+        if (version_compare(phpversion(), '5.3.6', '>=')) {
+            $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS | DEBUG_BACKTRACE_PROVIDE_OBJECT);
+        } else {
+            $backtrace = debug_backtrace();
+        }
 
         $skippedClasses = $this->skippedClasses;
         $backtrace = array_filter($backtrace, function ($item) use ($skippedClasses) {

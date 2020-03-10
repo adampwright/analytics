@@ -18,7 +18,7 @@ use Piwik\Plugin\Dimension\ActionDimension;
 class InteractionPosition extends ActionDimension
 {
     protected $columnName = 'interaction_position';
-    protected $columnType = 'MEDIUMINT UNSIGNED DEFAULT NULL';
+    protected $columnType = 'SMALLINT UNSIGNED DEFAULT NULL';
     protected $nameSingular = 'Actions_ColumnInteractionPosition';
     protected $type = self::TYPE_NUMBER;
 

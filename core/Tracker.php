@@ -97,7 +97,7 @@ class Tracker
     public function isInstalled()
     {
         if (is_null($this->isInstalled)) {
-            $this->isInstalled = SettingsPiwik::isMatomoInstalled();
+            $this->isInstalled = SettingsPiwik::isPiwikInstalled();
         }
 
         return $this->isInstalled;

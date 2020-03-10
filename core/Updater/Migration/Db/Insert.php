@@ -7,6 +7,7 @@
  */
 namespace Piwik\Updater\Migration\Db;
 use Piwik\Common;
+use Piwik\Db;
 
 /**
  * @see Factory::insert()

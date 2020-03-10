@@ -8,7 +8,7 @@
 
 namespace Piwik\Plugins\Login;
 
-use Matomo\Network\IP;
+use Piwik\Network\IP;
 use Piwik\Piwik;
 use Piwik\Settings\Setting;
 use Piwik\Settings\FieldConfig;

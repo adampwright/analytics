@@ -9,6 +9,7 @@
 namespace Piwik;
 
 use Exception;
+use Piwik\ArchiveProcessor\Parameters;
 use Piwik\ArchiveProcessor\PluginsArchiver;
 use Piwik\ArchiveProcessor\Rules;
 use Piwik\Archiver\Request;
@@ -273,8 +274,6 @@ class CronArchive
      */
     private $isArchiveProfilingEnabled = false;
 
-    private $lastDbReset = false;
-
     /**
      * Returns the option name of the option that stores the time core:archive was last executed.
      *
@@ -306,7 +305,6 @@ class CronArchive
         $this->invalidator = StaticContainer::get('Piwik\Archive\ArchiveInvalidator');
 
         $this->isArchiveProfilingEnabled = Config::getInstance()->Debug['archiving_profile'] == 1;
-        $this->lastDbReset = time();
     }
 
     private function isMaintenanceModeEnabled()
@@ -413,7 +411,10 @@ class CronArchive
                     (!$instanceId
                       || strpos($process, '--matomo-domain=' . $instanceId) !== false
                       || strpos($process, '--matomo-domain="' . $instanceId . '"') !== false
-                      || strpos($process, '--matomo-domain=\'' . $instanceId . "'") !== false)) {
+                      || strpos($process, '--matomo-domain=\'' . $instanceId . "'") !== false
+                      || strpos($process, '--piwik-domain=' . $instanceId) !== false
+                      || strpos($process, '--piwik-domain="' . $instanceId . '"') !== false
+                      || strpos($process, '--piwik-domain=\'' . $instanceId . "'") !== false)) {
                     $numRunning++;
                 }
             }
@@ -973,8 +974,6 @@ class CronArchive
 
     private function isThereAValidArchiveForPeriod($idSite, $period, $date, $segment = '')
     {
-        $this->disconnectDb();
-
         if (Range::isMultiplePeriod($date, $period)) {
             $rangePeriod = Factory::build($period, $date, Site::getTimezoneFor($idSite));
             $periodsToCheck = $rangePeriod->getSubperiods();
@@ -1239,23 +1238,10 @@ class CronArchive
         } catch (Exception $e) {
             return $this->logNetworkError($url, $e->getMessage());
         }
-        $this->disconnectDb();
         if ($this->checkResponse($response, $url)) {
             return $response;
         }
         return false;
-    }
-
-    private function disconnectDb()
-    {
-        $twoHoursInSeconds = 60 * 60 * 2;
-
-        if (time() > ($this->lastDbReset + $twoHoursInSeconds)) {
-            // we aim to through DB connections away only after 2 hours
-            $this->lastDbReset = time();
-            Db::destroyDatabaseObject();
-            Tracker::disconnectCachedDbConnection();
-        }
     }
 
     private function checkResponse($response, $url)

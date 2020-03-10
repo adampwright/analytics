@@ -12,8 +12,10 @@ namespace Piwik\Tracker;
 use Exception;
 use Piwik\Common;
 use Piwik\Container\StaticContainer;
+use Piwik\Piwik;
 use Piwik\Plugin\Dimension\ActionDimension;
 use Piwik\Plugin\Manager;
+use Piwik\Tracker;
 use Psr\Log\LoggerInterface;
 
 /**

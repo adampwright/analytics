@@ -257,16 +257,9 @@
                 currentDateRange[0].setFullYear(currentDateRange[0].getFullYear() - 1);
                 currentDateRange[1].setFullYear(currentDateRange[1].getFullYear() - 1);
 
-                if (vm.selectedPeriod === 'range') {
-                    return {
-                        comparePeriods: ['range'],
-                        compareDates: [piwikPeriods.format(currentDateRange[0]) + ',' + piwikPeriods.format(currentDateRange[1])],
-                    };
-                }
-
                 return {
-                    comparePeriods: [vm.selectedPeriod],
-                    compareDates: [piwikPeriods.format(currentDateRange[0])],
+                    comparePeriods: ['range'],
+                    compareDates: [piwikPeriods.format(currentDateRange[0]) + ',' + piwikPeriods.format(currentDateRange[1])],
                 };
             } else {
                 console.warn("Unknown compare period type: " + vm.comparePeriodType);

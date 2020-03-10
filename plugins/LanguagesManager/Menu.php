@@ -18,7 +18,7 @@ class Menu extends \Piwik\Plugin\Menu
 {
     public function configureTopMenu(MenuTop $menu)
     {
-        if (Piwik::isUserIsAnonymous() || !SettingsPiwik::isMatomoInstalled()) {
+        if (Piwik::isUserIsAnonymous() || !SettingsPiwik::isPiwikInstalled()) {
             $langManager = new LanguagesManager();
             $menu->addHtml('LanguageSelector', $langManager->getLanguagesSelector(), true, $order = 30, false);
         }

@@ -30,6 +30,7 @@ use Piwik\Plugins\SitesManager\API as SitesManagerApi;
 use Piwik\ReportRenderer;
 use Piwik\Scheduler\Schedule\Schedule;
 use Piwik\Site;
+use Piwik\Translate;
 use Piwik\Translation\Translator;
 use Psr\Log\LoggerInterface;
 
@@ -322,14 +323,13 @@ class API extends \Piwik\Plugin\API
             $outputType = self::OUTPUT_DOWNLOAD;
         }
 
-        /** @var Translator $translator */
-        $translator = StaticContainer::get('Piwik\Translation\Translator');
-
         // load specified language
         if (empty($language)) {
-            $language = $translator->getDefaultLanguage();
+            $language = Translate::getLanguageDefault();
         }
 
+        /** @var Translator $translator */
+        $translator = StaticContainer::get('Piwik\Translation\Translator');
         $translator->setCurrentLanguage($language);
 
         $reports = $this->getReports($idSite = false, $_period = false, $idReport);
@@ -503,7 +503,7 @@ class API extends \Piwik\Plugin\API
          * handle their new report formats.
          *
          * @param ReportRenderer &$reportRenderer This variable should be set to an instance that
-         *                                        extends {@link \Piwik\ReportRenderer} by one of the event
+         *                                        extends {@link Piwik\ReportRenderer} by one of the event
          *                                        subscribers.
          * @param string $reportType A string ID describing how the report is sent, eg,
          *                           `'sms'` or `'email'`.

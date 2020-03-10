@@ -14,7 +14,7 @@ use Piwik\Config;
 use Piwik\Date;
 use Piwik\DataTable;
 use Piwik\Metrics\Formatter;
-use Matomo\Network\IPUtils;
+use Piwik\Network\IPUtils;
 use Piwik\Piwik;
 use Piwik\Site;
 use Piwik\Plugins\SitesManager\API as APISitesManager;
@@ -96,7 +96,6 @@ class VisitorDetails extends VisitorDetailsAbstract
         $sitesModel = new \Piwik\Plugins\SitesManager\Model();
 
         $view                 = new View($template);
-        $view->sendHeadersWhenRendering = false;
         $view->mainUrl        = trim(Site::getMainUrlFor($this->getIdSite()));
         $view->additionalUrls = $sitesModel->getAliasSiteUrlsFromId($this->getIdSite());
         $view->action         = $action;
@@ -108,7 +107,6 @@ class VisitorDetails extends VisitorDetailsAbstract
     public function renderActionTooltip($action, $visitInfo)
     {
         $view            = new View('@Live/_actionTooltip');
-        $view->sendHeadersWhenRendering = false;
         $view->action    = $action;
         $view->visitInfo = $visitInfo;
         return [[ 0, $view->render() ]];
@@ -117,7 +115,6 @@ class VisitorDetails extends VisitorDetailsAbstract
     public function renderVisitorDetails($visitorDetails)
     {
         $view            = new View('@Live/_visitorDetails.twig');
-        $view->sendHeadersWhenRendering = false;
         $view->visitInfo = $visitorDetails;
         return [[ 0, $view->render() ]];
     }
@@ -125,7 +122,6 @@ class VisitorDetails extends VisitorDetailsAbstract
     public function renderIcons($visitorDetails)
     {
         $view          = new View('@Live/_visitorLogIcons.twig');
-        $view->sendHeadersWhenRendering = false;
         $view->visitor = $visitorDetails;
         return $view->render();
     }

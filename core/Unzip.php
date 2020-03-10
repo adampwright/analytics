@@ -8,10 +8,10 @@
 
 namespace Piwik;
 
-use Matomo\Decompress\Gzip;
-use Matomo\Decompress\PclZip;
-use Matomo\Decompress\Tar;
-use Matomo\Decompress\ZipArchive;
+use Piwik\Decompress\Gzip;
+use Piwik\Decompress\PclZip;
+use Piwik\Decompress\Tar;
+use Piwik\Decompress\ZipArchive;
 
 /**
  * Factory for Decompress adapters.
@@ -23,7 +23,7 @@ class Unzip
      *
      * @param string $name Name of unarchiver
      * @param string $filename Name of .zip archive
-     * @return \Matomo\Decompress\DecompressInterface
+     * @return \Piwik\Decompress\DecompressInterface
      */
     public static function factory($name, $filename)
     {

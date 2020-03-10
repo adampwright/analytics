@@ -8,8 +8,10 @@
  */
 namespace Piwik\Columns;
 
+use Piwik\Piwik;
 use Piwik\Plugin\ArchivedMetric;
 use Piwik\Plugin\ComputedMetric;
+use Piwik\Plugin\Report;
 
 /**
  * A factory to create computed metrics.

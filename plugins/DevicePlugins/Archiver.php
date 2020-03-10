@@ -80,7 +80,7 @@ class Archiver extends \Piwik\Plugin\Archiver
     protected function insertTable($recordName, DataTable $table)
     {
         $report = $table->getSerialized($this->maximumRows, null, Metrics::INDEX_NB_VISITS);
-        $this->getProcessor()->insertBlobRecord($recordName, $report);
+        return $this->getProcessor()->insertBlobRecord($recordName, $report);
     }
 
 }

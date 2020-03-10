@@ -8,8 +8,10 @@
  */
 namespace Piwik\Settings\Plugin;
 
+use Piwik\Db;
 use Piwik\Piwik;
 use Piwik\Settings\Settings;
+use Piwik\Settings\Storage;
 
 /**
  * Base class of all system settings providers. Plugins that define their own configuration settings

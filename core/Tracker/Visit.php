@@ -15,7 +15,7 @@ use Piwik\Config;
 use Piwik\Container\StaticContainer;
 use Piwik\Date;
 use Piwik\Exception\UnexpectedWebsiteFoundException;
-use Matomo\Network\IPUtils;
+use Piwik\Network\IPUtils;
 use Piwik\Plugin\Dimension\VisitDimension;
 use Piwik\Plugins\UserCountry\Columns\Base;
 use Piwik\Tracker;
@@ -409,10 +409,7 @@ class Visit implements VisitInterface
 
         if ($wasInserted) {
             Common::printDebug('Updated existing visit: ' . var_export($valuesToUpdate, true));
-        } elseif (!$this->getModel()->hasVisit($idSite, $idVisit)) {
-            // mostly for WordPress. see https://github.com/matomo-org/matomo/pull/15587
-            // as WP doesn't set `MYSQLI_CLIENT_FOUND_ROWS` and therefore when the update succeeded but no value changed
-            // it would still return 0 vs OnPremise would return 1 or 2.
+        } else {
             throw new VisitorNotFoundInDb(
                 "The visitor with idvisitor=" . bin2hex($this->visitProperties->getProperty('idvisitor'))
                 . " and idvisit=" . @$this->visitProperties->getProperty('idvisit')

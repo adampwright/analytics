@@ -27,6 +27,18 @@ class Session extends Zend_Session
     protected static $sessionStarted = false;
 
     /**
+     * Are we using file-based session store?
+     *
+     * @return bool  True if file-based; false otherwise
+     */
+    public static function isSessionHandler($handler)
+    {
+        $config = Config::getInstance();
+        return !isset($config->General['session_save_handler'])
+        || $config->General['session_save_handler'] === $handler;
+    }
+
+    /**
      * Start the session
      *
      * @param array|bool $options An array of configuration options; the auto-start (bool) setting is ignored
@@ -79,7 +91,7 @@ class Session extends Zend_Session
 
         $currentSaveHandler = ini_get('session.save_handler');
 
-        if (!SettingsPiwik::isMatomoInstalled()) {
+        if (!SettingsPiwik::isPiwikInstalled()) {
             // Note: this handler doesn't work well in load-balanced environments and may have a concurrency issue with locked session files
 
             // for "files", use our own folder to prevent local session file hijacking
@@ -89,7 +101,10 @@ class Session extends Zend_Session
 
             @ini_set('session.save_handler', 'files');
             @ini_set('session.save_path', $sessionPath);
-        } else {
+        } elseif (self::isSessionHandler('dbtable')
+            || self::isSessionHandler('files')
+            || in_array($currentSaveHandler, array('user', 'mm'))
+        ) {
             // as of Matomo 3.7.0 we only support files session handler during installation
 
             // We consider these to be misconfigurations, in that:
@@ -128,7 +143,7 @@ class Session extends Zend_Session
                 'ignoreInScreenWriter' => true,
             ]);
 
-            if (SettingsPiwik::isMatomoInstalled()) {
+            if (SettingsPiwik::isPiwikInstalled()) {
                 $pathToSessions = '';
             } else {
                 $pathToSessions = Filechecks::getErrorMessageMissingPermissions(self::getSessionsDirectory());

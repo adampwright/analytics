@@ -16,7 +16,6 @@ use Piwik\Tracker\Action;
 class Region extends Base
 {
     protected $columnName = 'location_region';
-    protected $columnType = 'char(3) DEFAULT NULL';
     protected $type = self::TYPE_TEXT;
     protected $category = 'UserCountry_VisitLocation';
     protected $segmentName = 'regionCode';

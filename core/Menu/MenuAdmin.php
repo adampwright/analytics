@@ -9,6 +9,7 @@
 namespace Piwik\Menu;
 
 use Piwik\Development;
+use Piwik\Piwik;
 
 /**
  * Contains menu entries for the Admin menu.
@@ -108,7 +109,7 @@ class MenuAdmin extends MenuAbstract
     /**
      * Triggers the Menu.MenuAdmin.addItems hook and returns the admin menu.
      *
-     * @return array
+     * @return Array
      */
     public function getMenu()
     {

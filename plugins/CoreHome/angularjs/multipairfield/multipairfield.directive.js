@@ -19,9 +19,7 @@
             restrict: 'A',
             scope: {
                 field1: '=',
-                field2: '=',
-                field3: '=',
-                field4: '='
+                field2: '='
             },
             require: "?ngModel",
             templateUrl: 'plugins/CoreHome/angularjs/multipairfield/multipairfield.directive.html?cb=' + piwik.cacheBuster,

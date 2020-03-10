@@ -1153,7 +1153,7 @@ class Zend_Mail extends Zend_Mime_Message
     /**
      * Return mail headers
      *
-     * @return array
+     * @return void
      */
     public function getHeaders()
     {

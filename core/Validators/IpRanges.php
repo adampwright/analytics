@@ -9,7 +9,7 @@
 
 namespace Piwik\Validators;
 
-use Matomo\Network\IPUtils;
+use Piwik\Network\IPUtils;
 use Piwik\Piwik;
 
 class IpRanges extends BaseValidator

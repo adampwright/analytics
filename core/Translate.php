@@ -27,8 +27,7 @@ class Translate
      */
     public static function clean($s)
     {
-        self::triggerDeprecationNotice();
-        return self::getTranslator()->clean($s);
+        return html_entity_decode(trim($s), ENT_QUOTES, 'UTF-8');
     }
 
     /**
@@ -52,7 +51,6 @@ class Translate
      */
     public static function reloadLanguage($language = false)
     {
-        self::triggerDeprecationNotice();
     }
 
     /**
@@ -63,7 +61,6 @@ class Translate
      */
     public static function loadCoreTranslation($language = false)
     {
-        self::triggerDeprecationNotice();
         self::getTranslator()->addDirectory(PIWIK_INCLUDE_PATH . '/lang');
     }
 
@@ -72,7 +69,6 @@ class Translate
      */
     public static function mergeTranslationArray($translation)
     {
-        self::triggerDeprecationNotice();
     }
 
     /**
@@ -81,14 +77,12 @@ class Translate
      */
     public static function getLanguageToLoad()
     {
-        self::triggerDeprecationNotice();
         return self::getTranslator()->getCurrentLanguage();
     }
 
     /** Reset the cached language to load. Used in tests. */
     public static function reset()
     {
-        self::triggerDeprecationNotice();
         self::getTranslator()->reset();
     }
 
@@ -98,13 +92,11 @@ class Translate
      */
     public static function getLanguageLoaded()
     {
-        self::triggerDeprecationNotice();
         return self::getTranslator()->getCurrentLanguage();
     }
 
     public static function getLanguageDefault()
     {
-        self::triggerDeprecationNotice();
         return self::getTranslator()->getDefaultLanguage();
     }
 
@@ -113,13 +105,11 @@ class Translate
      */
     public static function getJavascriptTranslations()
     {
-        self::triggerDeprecationNotice();
         return self::getTranslator()->getJavascriptTranslations();
     }
 
     public static function findTranslationKeyForTranslation($translation)
     {
-        self::triggerDeprecationNotice();
         return self::getTranslator()->findTranslationKeyForTranslation($translation);
     }
 
@@ -133,15 +123,7 @@ class Translate
 
     public static function loadAllTranslations()
     {
-        self::triggerDeprecationNotice();
         self::loadCoreTranslation();
         Manager::getInstance()->loadPluginTranslations();
-    }
-
-    protected static function triggerDeprecationNotice()
-    {
-        if (Development::isEnabled()) {
-            Log::warning('Using \Piwik\Translate is deprecated. Use \Piwik\Translation\Translator instead.');
-        }
     }
 }

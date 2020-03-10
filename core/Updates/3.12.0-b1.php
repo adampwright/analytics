@@ -11,6 +11,7 @@ namespace Piwik\Updates;
 
 use Piwik\Updater;
 use Piwik\Updates as PiwikUpdates;
+use Piwik\Updater\Migration;
 use Piwik\Updater\Migration\Factory as MigrationFactory;
 
 /**

@@ -69,6 +69,7 @@
                 citySelectedLabelColor = colors['city-selected-label-color'],
                 regionLayerStrokeColor = colors['region-layer-stroke-color'],
                 hasUserZoomed = false;
+                ;
 
             /*
              * our own custom selector to only select stuff of this widget
@@ -374,8 +375,8 @@
                 infobtn.off('mouseenter').on('mouseenter',function (e) {
                     $(infobtn.data('tooltip-target')).show();
                 }).off('mouseleave').on('mouseleave', function (e) {
-                    $(infobtn.data('tooltip-target')).hide();
-                });
+                        $(infobtn.data('tooltip-target')).hide();
+                    });
                 $('.UserCountryMap-tooltip').hide();
             }
 
@@ -699,11 +700,6 @@
             }
 
             function displayUnlocatableCount(unlocated, total, regionOrCity) {
-
-                if (0 == unlocated) {
-                    return;
-                }
-
                 $('.unlocated-stats').html(
                     $('.unlocated-stats').data('tpl')
                         .replace('%s', unlocated)

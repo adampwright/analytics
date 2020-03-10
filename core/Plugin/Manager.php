@@ -18,6 +18,7 @@ use Piwik\Config as PiwikConfig;
 use Piwik\Container\StaticContainer;
 use Piwik\Development;
 use Piwik\EventDispatcher;
+use Piwik\Exception\Exception;
 use Piwik\Exception\PluginDeactivatedException;
 use Piwik\Filesystem;
 use Piwik\Log;
@@ -69,7 +70,6 @@ class Manager
 
     // These are always activated and cannot be deactivated
     protected $pluginToAlwaysActivate = array(
-        'BulkTracking',
         'CoreHome',
         'CoreUpdater',
         'CoreAdminHome',
@@ -1388,7 +1388,7 @@ class Manager
             return true;
         }
 
-        $hooks = $plugin->registerEvents();
+        $hooks = $plugin->getListHooksRegistered();
         $hookNames = array_keys($hooks);
         foreach ($hookNames as $name) {
             if (strpos($name, self::TRACKER_EVENT_PREFIX) === 0) {

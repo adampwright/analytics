@@ -8,6 +8,8 @@
 
 namespace Piwik\Http;
 
+use Piwik\Url;
+
 /**
  * Router
  */

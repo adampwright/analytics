@@ -29,7 +29,7 @@ return array(
         ];
     }),
 
-    'Matomo\Cache\Backend' => function () {
+    'Piwik\Cache\Backend' => function () {
         return \Piwik\Cache::buildBackend('file');
     },
     'cache.eager.cache_id' => 'eagercache-test-',

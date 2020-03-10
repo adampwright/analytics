@@ -11,7 +11,7 @@ namespace Piwik\Plugins\CoreHome;
 use Piwik\Common;
 use Piwik\Config;
 use Piwik\Container\StaticContainer;
-use Matomo\Network\IP as NetworkIp;
+use Piwik\Network\IP as NetworkIp;
 use Piwik\NoAccessException;
 use Piwik\Piwik;
 use Piwik\SettingsServer;

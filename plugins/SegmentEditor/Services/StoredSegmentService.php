@@ -9,7 +9,7 @@
 namespace Piwik\Plugins\SegmentEditor\Services;
 
 use Piwik\Plugins\SegmentEditor\Model;
-use Matomo\Cache\Transient as TransientCache;
+use Piwik\Cache\Transient as TransientCache;
 
 
 /**

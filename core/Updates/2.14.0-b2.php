@@ -11,6 +11,7 @@ namespace Piwik\Updates;
 
 use Piwik\Updater;
 use Piwik\Updates;
+use Piwik\Db;
 use Piwik\Updater\Migration\Factory as MigrationFactory;
 
 class Updates_2_14_0_b2 extends Updates

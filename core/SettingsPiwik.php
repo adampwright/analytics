@@ -216,9 +216,20 @@ class SettingsPiwik
     }
 
     /**
+     * @see SettingsPiwik::isPiwikInstalled
      * @return bool
      */
     public static function isMatomoInstalled()
+    {
+        return self::isPiwikInstalled();
+    }
+
+    /**
+     * Return true if Piwik is installed (installation is done).
+     * @deprecated since Matomo 3.8.0, please use {@link isMatomoInstalled()} instead.
+     * @return bool
+     */
+    public static function isPiwikInstalled()
     {
         $config = Config::getInstance()->getLocalPath();
         $exists = file_exists($config);
@@ -463,7 +474,7 @@ class SettingsPiwik
     public static function getPiwikInstanceId()
     {
         // until Piwik is installed, we use hostname as instance_id
-        if (!self::isMatomoInstalled()
+        if (!self::isPiwikInstalled()
             && Common::isPhpCliMode()) {
             // enterprise:install use case
             return Config::getHostname();
@@ -496,7 +507,7 @@ class SettingsPiwik
      */
     public static function isHttpsForced()
     {
-        if (!SettingsPiwik::isMatomoInstalled()) {
+        if (!SettingsPiwik::isPiwikInstalled()) {
             // Only enable this feature after Piwik is already installed
             return false;
         }

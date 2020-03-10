@@ -7,6 +7,8 @@
  */
 namespace Piwik\Updater\Migration\Db;
 
+use Piwik\Db;
+
 /**
  * @see Factory::dropTable()
  * @ignore

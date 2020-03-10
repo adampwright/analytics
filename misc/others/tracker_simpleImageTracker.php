@@ -1,9 +1,9 @@
 <?php
-// -- Matomo Tracking API init --
-require_once '../../vendor/matomo/matomo-php-tracker/MatomoTracker.php';
-MatomoTracker::$URL = 'http://localhost/matomo-master/';
+// -- Piwik Tracking API init --
+require_once "../../libs/PiwikTracker/PiwikTracker.php";
+PiwikTracker::$URL = 'http://localhost/matomo-master/';
 // Example 1: Tracks a pageview for Website id = {$IDSITE}
-$trackingURL = Matomo_getUrlTrackPageView($idSite = 16, $customTitle = 'This title will appear in the report Actions > Page titles');
+$trackingURL = Piwik_getUrlTrackPageView($idSite = 16, $customTitle = 'This title will appear in the report Actions > Page titles');
 
 ?>
 <html>

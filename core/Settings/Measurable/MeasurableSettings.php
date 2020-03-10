@@ -8,8 +8,10 @@
  */
 namespace Piwik\Settings\Measurable;
 
+use Piwik\Db;
 use Piwik\Piwik;
 use Piwik\Settings\Settings;
+use Piwik\Settings\Storage;
 use Piwik\Site;
 use Exception;
 

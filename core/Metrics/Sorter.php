@@ -11,6 +11,7 @@ use Piwik\DataTable;
 use Piwik\DataTable\Row;
 use Piwik\Metrics;
 use Piwik\Plugin\Metric;
+use Piwik\Plugin\Report;
 
 class Sorter
 {

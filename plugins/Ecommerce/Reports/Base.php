@@ -57,7 +57,7 @@ abstract class Base extends Report
     {
         $idSite = $infos['idSite'];
 
-        if (empty($idSite) || !is_numeric($idSite)) {
+        if (empty($idSite)) {
             return false;
         }
 

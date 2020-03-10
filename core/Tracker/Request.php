@@ -16,7 +16,7 @@ use Piwik\Cookie;
 use Piwik\Exception\InvalidRequestParameterException;
 use Piwik\Exception\UnexpectedWebsiteFoundException;
 use Piwik\IP;
-use Matomo\Network\IPUtils;
+use Piwik\Network\IPUtils;
 use Piwik\Piwik;
 use Piwik\Plugins\CustomVariables\CustomVariables;
 use Piwik\Plugins\UsersManager\UsersManager;
@@ -869,7 +869,7 @@ class Request
     }
 
     /**
-     * Matches implementation of MatomoTracker::getUserIdHashed
+     * Matches implementation of PiwikTracker::getUserIdHashed
      *
      * @param $userId
      * @return string

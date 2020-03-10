@@ -11,6 +11,7 @@ namespace Piwik\Settings\Measurable;
 
 use Piwik\Container\StaticContainer;
 use Piwik\Piwik;
+use Piwik\Settings\Storage;
 
 /**
  * Describes a Measurable setting for a measurable type such as a website, a mobile app, ...

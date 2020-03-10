@@ -245,7 +245,7 @@ abstract class GeoIp2 extends LocationProvider
      */
     protected function getIpFromInfo($info)
     {
-        $ip = \Matomo\Network\IP::fromStringIP($info['ip']);
+        $ip = \Piwik\Network\IP::fromStringIP($info['ip']);
 
         return $ip->toString();
     }

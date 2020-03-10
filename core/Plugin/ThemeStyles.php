@@ -100,7 +100,7 @@ class ThemeStyles
     /**
      * @var string
      */
-    public $colorHeaderBackground = '#3450A3';
+    public $colorHeaderBackground = '#1A202C';
 
     /**
      * @var string
